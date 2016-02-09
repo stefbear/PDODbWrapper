@@ -1,0 +1,30 @@
+h1, h2 {
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+#authorsTable, #booksTable{
+	display:table;
+	width:auto;
+	background-color:#eee;
+	border:1px solid #666666;
+	border-spacing:5px; /*cellspacing: IE support*/
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#firstRow, #row{
+	display:table-row;
+	width:auto;
+	clear:both;
+}
+
+#firstRow{
+	background: #ccc;	
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#column1, #column2, #column3, #column4, #column5{
+	float: left; /*fix for older browsers*/
+	display: table-column;         
+	width: 200px;         
+}

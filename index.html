@@ -1,0 +1,47 @@
+<html>
+<head><title>Reading and Manipulating Access Databases with PDO and ODBC</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://digg.googlecode.com/files/Class-0.0.2.js"></script>
+<script src="dbwrapper.js"></script>
+<script>
+function updateTable(dbw) {
+	switch( dbw.table ) {
+		case 'authors':
+			dbw.getAll( function( data ) {
+				$('#authorsTable').html('<div id="firstRow"><div id="column1">ID</div><div id="column2">Author</div></div>');
+				$(data).each( function( ind, author ) {
+					$('#firstRow').after('<div id="row"><div id="column1">'+author.ID+'</div><div id="column2">'+author.name+'</div></div>');
+				} );
+			} );			
+			break;
+		case 'books':		
+			dbw.getAll( function( data ) {
+				$('#booksTable').html('<div id="firstRow"><div id="column1">ID</div><div id="column2">Title</div><div id="column3">Author</div><div id="column4">Publisher</div><div id="column5">Year</div></div>');
+				$(data).each( function( ind, book ) {
+					$('#firstRow').after('<div id="row"><div id="column1">'+book.ID+'</div><div id="column2">'+book.title+'</div><div id="column3">'+book.author_id+'</div><div id="column4">'+book.publisher+'</div><div id="column5">'+book.year_release+'</div></div>');
+				} );
+			} );			
+			break;
+		default:		
+			break;
+	}
+}
+
+$(document).ready(function() {
+	var dbw = new DbWrapper();
+	dbw.table = 'authors';
+	updateTable(dbw);
+	dbw.table = 'books';
+	updateTable(dbw);		
+}); 
+</script>
+</head>
+<body>
+	<h1>Reading Access Databases with PDO and ODBC</h1>
+	<h2>Authors:</h2>
+	<div id="authorsTable"></div> 
+	<h2>Books:</h2>
+	<div id="booksTable"></div>
+</body>
+</html>
